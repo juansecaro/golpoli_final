@@ -1,0 +1,12 @@
+<%= simple_form_for(@schedule) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.association :pitch %>
+    <%= f.input :date_ref %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

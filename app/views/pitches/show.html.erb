@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @pitch.name %>
+</p>
+
+<p>
+  <strong>Normal price:</strong>
+  <%= @pitch.normal_price %>
+</p>
+
+<p>
+  <strong>Special price:</strong>
+  <%= @pitch.special_price %>
+</p>
+
+<p>
+  <strong>Active:</strong>
+  <%= @pitch.active %>
+</p>
+
+<p>
+  <strong>Kind:</strong>
+  <%= @pitch.kind %>
+</p>
+
+<p>
+  <strong>Other:</strong>
+  <%= @pitch.other %>
+</p>
+
+<p>
+  <strong>Image1:</strong>
+  <%= @pitch.image1 %>
+</p>
+
+<p>
+  <strong>Image2:</strong>
+  <%= @pitch.image2 %>
+</p>
+
+<p>
+  <strong>Image3:</strong>
+  <%= @pitch.image3 %>
+</p>
+
+<p>
+  <strong>Institution:</strong>
+  <%= @pitch.institution %>
+</p>
+
+<%= link_to 'Edit', edit_pitch_path(@pitch) %> |
+<%= link_to 'Back', pitches_path %>

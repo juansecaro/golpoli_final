@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  pitch: one
+  date_ref: 2017-07-20
+
+two:
+  pitch: two
+  date_ref: 2017-07-20

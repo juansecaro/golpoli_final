@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Ciudades disponibles</h1>
+<div class="row">
+<% @institutions.each do |institution| %>
+
+  <div class="col-sm-6 col-md-4">
+    <div class="thumbnail">
+      <%= link_to image_tag(institution.img_source, class:"img-rounded", alt: institution.name),institution %>
+      <div class="caption">
+        <h3><%= institution.city %></h3>
+        <p><%= institution.description %></p>
+        <p><%= link_to 'Pistas disponibles', institution, class: "btn btn-primary" %>
+          <%= link_to 'Ofertas', institution, class: "btn btn-default" %></p>
+      </div>
+    </div>
+  </div>
+
+  <% end %>
+</div>
+
+
+
+
+
+<br>
+
+<%= link_to 'New Institution', new_institution_path %>

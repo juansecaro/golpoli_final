@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Pitch:</strong>
+  <%= @schedule.pitch %>
+</p>
+
+<p>
+  <strong>Date ref:</strong>
+  <%= @schedule.date_ref %>
+</p>
+
+<%= link_to 'Edit', edit_schedule_path(@schedule) %> |
+<%= link_to 'Back', schedules_path %>
