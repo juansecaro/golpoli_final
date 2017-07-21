@@ -5,50 +5,14 @@
   <%= @pitch.name %>
 </p>
 
-<p>
-  <strong>Normal price:</strong>
-  <%= @pitch.normal_price %>
-</p>
+<p><input type="text" class="datepicker" onkeydown="return false" onCopy="return false" onDrag="return false" onDrop="return false" onPaste="return false" autocomplete=off></p>
 
-<p>
-  <strong>Special price:</strong>
-  <%= @pitch.special_price %>
-</p>
+<div id="dynamictable" class="col-md-4"></div>
+<div id="booking" class="col-md-8"></div>
 
-<p>
-  <strong>Active:</strong>
-  <%= @pitch.active %>
-</p>
+<div>
+  <input type="hidden" id='pitch_id' value='<%= @pitch.id %>'>
+  <p id='date'> </p>
+</div>
 
-<p>
-  <strong>Kind:</strong>
-  <%= @pitch.kind %>
-</p>
-
-<p>
-  <strong>Other:</strong>
-  <%= @pitch.other %>
-</p>
-
-<p>
-  <strong>Image1:</strong>
-  <%= @pitch.image1 %>
-</p>
-
-<p>
-  <strong>Image2:</strong>
-  <%= @pitch.image2 %>
-</p>
-
-<p>
-  <strong>Image3:</strong>
-  <%= @pitch.image3 %>
-</p>
-
-<p>
-  <strong>Institution:</strong>
-  <%= @pitch.institution %>
-</p>
-
-<%= link_to 'Edit', edit_pitch_path(@pitch) %> |
-<%= link_to 'Back', pitches_path %>
+<input type="button" class="btn btn-info" onclick="JSONBack();" value="¡Reserva!" />

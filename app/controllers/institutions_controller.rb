@@ -10,6 +10,7 @@ class InstitutionsController < ApplicationController
   # GET /institutions/1
   # GET /institutions/1.json
   def show
+    @pitches = @institution.pitches.all
   end
 
   # GET /institutions/new

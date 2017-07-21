@@ -23,7 +23,7 @@ gem 'coffee-rails', '~> 4.2'
 # For internationalization
 gem "rails-i18n"
 gem "font-awesome-rails"
-
+gem 'jquery-ui-rails', '~> 5.0', '>= 5.0.5'
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
 gem 'better_errors', '~> 2.1', '>= 2.1.1'
 gem 'awesome_print', '~> 1.7', :require => 'ap'

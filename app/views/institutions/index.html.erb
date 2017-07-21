@@ -6,12 +6,12 @@
 
   <div class="col-sm-6 col-md-4">
     <div class="thumbnail">
-      <%= link_to image_tag(institution.img_source, class:"img-rounded", alt: institution.name),institution %>
+      <%= link_to image_tag(institution.img_source, class:"img-rounded img-responsive", alt: institution.name),institution %>
       <div class="caption">
         <h3><%= institution.city %></h3>
         <p><%= institution.description %></p>
         <p><%= link_to 'Pistas disponibles', institution, class: "btn btn-primary" %>
-          <%= link_to 'Ofertas', institution, class: "btn btn-default" %></p>
+          <%= link_to 'Ofertas patrocinadas', institution, class: "btn btn-default" %></p>
       </div>
     </div>
   </div>

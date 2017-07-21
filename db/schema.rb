@@ -47,9 +47,7 @@ ActiveRecord::Schema.define(version: 20170720151424) do
     t.boolean  "active"
     t.string   "kind"
     t.text     "other"
-    t.string   "image1"
-    t.string   "image2"
-    t.string   "image3"
+    t.string   "image"
     t.integer  "institution_id"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false

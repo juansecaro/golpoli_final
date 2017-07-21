@@ -25,11 +25,9 @@ Pitch.create!(
   normal_price: 10,
   special_price: 15,
   active: true,
-  kind: "",
+  kind: "futbol",
   other: "",
-  image1: "",
-  image2: "",
-  image3: "",
+  image: "polillerena.jpg",
   institution_id: 1
 )
 
@@ -38,11 +36,9 @@ Pitch.create!(
   normal_price: 7,
   special_price: 10,
   active: true,
-  kind: "",
+  kind: "padel",
   other: "",
-  image1: "",
-  image2: "",
-  image3: "",
+  image: "",
   institution_id: 1
 )
 
@@ -51,10 +47,8 @@ Pitch.create!(
   normal_price: 10,
   special_price: 15,
   active: true,
-  kind: "",
+  kind: "padel",
   other: "",
-  image1: "",
-  image2: "",
-  image3: "",
+  image: "",
   institution_id: 1
 )
