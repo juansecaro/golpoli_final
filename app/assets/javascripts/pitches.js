@@ -6,9 +6,12 @@ var id;
 $(document).on('turbolinks:load', function() {
     $('.datepicker').datepicker({
         onSelect: function(date) {
-            mday = date.substring(0, 2);
+            // mday = date.substring(0, 2);
+            mday = date;
+
             //Pitch id saved in hidden value
             id = document.getElementById("pitch_id").value;
+
 
             $.ajax({
                 url: '/horarios',

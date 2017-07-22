@@ -61,6 +61,12 @@ class PitchesController < ApplicationController
     end
   end
 
+  def get_schedule
+    our_date = Date.strptime(params[:day], '%d/%m/%Y')
+    @schedule = Schedule.where("date_ref = ? and pitch_id = ?", our_date , params[:pitch_id])
+    render json: @schedule[0]
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_pitch

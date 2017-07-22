@@ -7,7 +7,7 @@ Rails.application.routes.draw do
       resources :schedules
     end
   end
-
+  resources :schedules
   resources :contacts
   resources :users, only: [:show]
 
