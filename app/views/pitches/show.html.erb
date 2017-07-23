@@ -15,7 +15,22 @@
 
 <div>
   <input type="hidden" id='pitch_id' value='<%= @pitch.id %>'>
-  <p id='date'> </p>
+  <!-- <p id='date'> </p> -->
 </div>
 
-<input type="button" class="btn btn-info" onclick="JSONBack();" value="¡Reserva!" />
+<table>
+  <thead>
+    Leyenda
+  </thead>
+  <tbody>
+    <tr><td id="desc_libre"></td><td>Libre</td></tr>
+    <tr><td id="desc_reservado"></td><td>Reservado</td></tr>
+    <tr><td id="desc_otros"></td><td>Otras actividades/Mantenimiento</td></tr>
+    <tr><td id="desc_cerrado"></td><td>Cerrado</td></tr>
+    <tr><td id="desc_select"></td><td>Selección actual</td></tr>
+  </tbody>
+</table>
+
+
+
+<!-- <input type="button" class="btn btn-info" onclick="JSONBack();" value="¡Reserva!" /> -->

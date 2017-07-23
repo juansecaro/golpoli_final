@@ -1,13 +1,30 @@
 // Place all the styles related to the Pitches controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
-table{background:#CCC;border:1px solid #000;}
-table td{padding:5px;border:1px solid #DDD;}
-
-// Table code colors
 $closed: #8b8878; // Out of time *
 $free: #008000; // Free to use *
 $occupied: #6c1100; //Reservation confirmed *
 $unavailable: #ea821a; // Blocked, Used by other activities or maintenance
 $selected: #FF0000; // Current selection
+
+table{background:#CCC;border:1px solid #000;}
+table td{padding:5px;border:1px solid #DDD;}
+
+// Description table colors
+#desc_libre{
+  background-color: $free;
+}
+#desc_reservado{
+  background-color: $occupied;
+}
+#desc_otros{
+  background-color: $unavailable;
+}
+#desc_cerrado{
+  background-color: $closed;
+}
+#desc_select{
+  background-color: $selected;
+}
+
+// Table code colors
