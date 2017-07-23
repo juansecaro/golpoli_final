@@ -62,6 +62,7 @@ class PitchesController < ApplicationController
   end
 
   def get_schedule
+    # Improvement: manage the picker to send the correct format -> DatePicker altformat
     our_date = Date.strptime(params[:day], '%d/%m/%Y')
     @schedule = Schedule.where("date_ref = ? and pitch_id = ?", our_date , params[:pitch_id])
     render json: @schedule[0]

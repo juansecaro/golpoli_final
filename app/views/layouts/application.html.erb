@@ -11,9 +11,18 @@
   <body>
     <%= render "layouts/header" %>
 
+    <p>
+      <div class="container" id="main_section">
+
+      <% flash.each do |key, value| %>
+          <div class="<%= flash_class(key) %>">
+            <%= value %>
+          </div>
+      <% end %>
+    </div>
+    </p>
     <div class="container">
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
+
 
 
       <%= yield %>

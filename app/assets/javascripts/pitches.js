@@ -78,21 +78,19 @@ function createTable(json){
         miArray[i] = val1;
         miArray[i+1] = val2;
 
-        if (val1 != null &&  val2 != null){
+        if (val1 != null ||  val2 != null){
             table.append("<tr><td>"+formattedH(h)+":00 </td> <td id="+i+">"+val1+"</td><td id="+(i+1)+">"+val2+"</td></tr>");
             switch(val1) {
-                case 0:  $('#'+i).css({"background-color": "#8CFF83"});  break; //free
-                case 1:  $('#'+i).css({"background-color": "#542604"});  break; //occupaid
-                case 2:  $('#'+i).css({"background-color": "#FF740D"});  break; //unconfirmed
-                case 3:  $('#'+i).css({"background-color": "#4C9DFF"});  break; //unavailable
-                default: $('#'+i).css({"background-color": "#CCC"}); //out of time
+                case 0:  $('#'+i).css({"background-color": "#008000"});  break; //free
+                case 1:  $('#'+i).css({"background-color": "#6c1100"});  break; //occupaid
+                case 2:  $('#'+i).css({"background-color": "#ea821a"});  break; //unavailable
+                default: $('#'+i).css({"background-color": "#8b8878"}); //out of time
             }
             switch(val2) {
-                case 0:  $('#'+(i+1)).css({"background-color": "#8CFF83"});  break; //free
-                case 1:  $('#'+(i+1)).css({"background-color": "#542604"});  break; //occupaid
-                case 2:  $('#'+(i+1)).css({"background-color": "#FF740D"});  break; //unconfirmed
-                case 3:  $('#'+(i+1)).css({"background-color": "#4C9DFF"});  break; //unavailable
-                default: $('#'+(i+1)).css({"background-color": "#CCC"}); //out of time
+                case 0:  $('#'+(i+1)).css({"background-color": "#008000"});  break; //free
+                case 1:  $('#'+(i+1)).css({"background-color": "#6c1100"});  break; //occupaid
+                case 2:  $('#'+(i+1)).css({"background-color": "#ea821a"});  break; //unavailable
+                default: $('#'+(i+1)).css({"background-color": "#8b8878"}); //out of time
             }
         }
     }
@@ -131,7 +129,7 @@ $(document).on( 'turbolinks:load', function(){
         }
         else if (miArray[p] == 9) {
             miArray[p]=0;
-            $('#'+ p).css({"background-color": "#8CFF83"});
+            $('#'+ p).css({"background-color": "#008000"});
             $('#m'+p ).remove();
 
         }
