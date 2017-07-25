@@ -2,6 +2,8 @@ var globalJSON;
 var miArray = new Array(48);
 var mday;
 var id;
+var n_selected = 0;
+var pprice; //Pitch normal price
 var first_time = true;
 
 $(document).on('turbolinks:load', function() {
@@ -12,6 +14,7 @@ $(document).on('turbolinks:load', function() {
 
             //Pitch id saved in hidden value
             id = document.getElementById("pitch_id").value;
+
 
 
             $.ajax({
@@ -128,18 +131,22 @@ $(document).on( 'turbolinks:load', function(){
         if (miArray[p] == 0){
           if (first_time){
             $('#booking').append("<h4> <p> Selección: </p> </h4>");
+            $('#subtotal').append("<h4> <p> Total a pagar: </p> </h4>");
+
             first_time = false;
           }
             miArray[p] = 9;
             $('#'+ p).css({"background-color": "red"});
-
             $('#booking').append("<p id="+'m'+p+">"+hourById(p)+"<p>");
+            n_selected++;
+            currentPrice();
         }
         else if (miArray[p] == 9) {
             miArray[p]=0;
             $('#'+ p).css({"background-color": "#008000"});
             $('#m'+p ).remove();
-
+            n_selected--;
+            currentPrice();
         }
     });
 });
@@ -272,6 +279,14 @@ function hourById(id){
 
     return exp;
 
+}
+function currentPrice()
+{
+pprice = document.getElementById("pitch_price").value;
+if ($('#total_price').empty()== false) {
+  $('#total_price').remove();
+}
+$('#total_price').append("<p>"+pprice*n_selected+ "€"+"<p>");
 }
 
 function finalCheck(){
