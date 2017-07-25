@@ -11,6 +11,11 @@ $(document).on('turbolinks:load', function() {
         onSelect: function(date) {
             // mday = date.substring(0, 2);
             mday = date;
+            n_selected = 0;
+            if ($('#total_price').empty()== false) {
+              $('#total_price').remove();
+            }
+
 
             //Pitch id saved in hidden value
             id = document.getElementById("pitch_id").value;
@@ -109,6 +114,7 @@ function eraseTable(){
     }
 }
 function eraseReservations(){
+
     //Clean up html
     var el = document.getElementById('booking');
     while( el.hasChildNodes() ){
