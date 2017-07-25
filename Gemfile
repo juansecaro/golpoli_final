@@ -23,6 +23,15 @@ gem 'coffee-rails', '~> 4.2'
 # For internationalization
 gem "rails-i18n"
 gem "font-awesome-rails"
+gem 'letter_opener', '~> 1.4', '>= 1.4.1', group: :development
+#Let's keep sensitive info safe
+gem 'figaro', '~> 1.1', '>= 1.1.1'
+gem 'rails_12factor', group: :production
+# Use Puma as the app server
+#stripe
+gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
+#posgreSQL for production
+#gem 'pg', group: :production
 gem 'jquery-ui-rails', '~> 5.0', '>= 5.0.5'
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
 gem 'better_errors', '~> 2.1', '>= 2.1.1'
