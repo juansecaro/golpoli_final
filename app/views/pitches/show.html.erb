@@ -1,35 +1,54 @@
-<p id="notice"><%= notice %></p>
-
+<div class="row">
+  <div class="col-md-2">
 <p>
   <strong><%= @pitch.name %></strong>
-  <p>
-    Seleccione fecha:
-  </p>
-
+  <p>    Seleccione fecha:  </p>
 </p>
 
 <p><input type="text" class="datepicker" onkeydown="return false" onCopy="return false" onDrag="return false" onDrop="return false" onPaste="return false" autocomplete=off></p>
 
-<div id="dynamictable" class="col-md-4"></div>
-<div id="booking" class="col-md-8"></div>
+
+
+    <table>
+      <thead>
+        Leyenda
+      </thead>
+      <tbody>
+        <tr><td id="desc_libre"></td><td><small>Libre</small></td></tr>
+        <tr><td id="desc_reservado"></td><td><small>Reservado</small></td></tr>
+        <tr><td id="desc_otros"></td><td><small>No reservable</small></td></tr>
+        <tr><td id="desc_cerrado"></td><td><small>Cerrado al público</small></td></tr>
+        <tr><td id="desc_select"></td><td><small>Selección actual</small></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="col-md-3">
+    <p>
+      <div id="dynamictable"></div>
+    </p>
+  </div>
+  <p>
+    <div id="booking" class="col-md-3">
+      
+    </div>
+  </p>
+
+
+
+
+
+</div>
+
+
+
+
 
 <div>
   <input type="hidden" id='pitch_id' value='<%= @pitch.id %>'>
   <!-- <p id='date'> </p> -->
 </div>
 
-<table>
-  <thead>
-    Leyenda
-  </thead>
-  <tbody>
-    <tr><td id="desc_libre"></td><td>Libre</td></tr>
-    <tr><td id="desc_reservado"></td><td>Reservado</td></tr>
-    <tr><td id="desc_otros"></td><td>Otras actividades/Mantenimiento</td></tr>
-    <tr><td id="desc_cerrado"></td><td>Cerrado</td></tr>
-    <tr><td id="desc_select"></td><td>Selección actual</td></tr>
-  </tbody>
-</table>
+
 
 
 

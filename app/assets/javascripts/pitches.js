@@ -2,6 +2,7 @@ var globalJSON;
 var miArray = new Array(48);
 var mday;
 var id;
+var first_time = true;
 
 $(document).on('turbolinks:load', function() {
     $('.datepicker').datepicker({
@@ -119,12 +120,19 @@ function eraseReservations(){
 }
 //Selection-Deselection specifics cells
 $(document).on( 'turbolinks:load', function(){
+
     $("#dynamictable").on('click','td', function() {
+
         //alert($(this).attr('id'));
         var p = ($(this).attr('id'));//ID's selected point
         if (miArray[p] == 0){
+          if (first_time){
+            $('#booking').append("<h4> <p> Selección: </p> </h4>");
+            first_time = false;
+          }
             miArray[p] = 9;
             $('#'+ p).css({"background-color": "red"});
+
             $('#booking').append("<p id="+'m'+p+">"+hourById(p)+"<p>");
         }
         else if (miArray[p] == 9) {
@@ -264,4 +272,23 @@ function hourById(id){
 
     return exp;
 
+}
+
+function finalCheck(){
+  var max_selected;
+  var pass = true;
+  var change_trends = 0;
+  var previous = 0, current;
+
+  for (i in miArray){
+    current = i;
+    if (i == 9) {max_selected++;}
+    if ( (previous < 5 && current == 9) || (previous == 9 && current < 5) ) {change_trends++}
+  }
+
+  //More than 2h selected or more than 1 section
+  if (max_selected>4 || change_trends>2)
+    {pass = false;}
+
+  return pass;
 }
