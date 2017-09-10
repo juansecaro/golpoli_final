@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :schedules
   resources :contacts
   resources :users, only: [:show]
+  resources :charges
 
   root 'institutions#index'
   # JSON Schedule handdling

@@ -10,6 +10,7 @@ class PitchesController < ApplicationController
   # GET /pitches/1
   # GET /pitches/1.json
   def show
+    
   end
 
   # GET /pitches/new

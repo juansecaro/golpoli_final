@@ -12,6 +12,7 @@ $(document).on('turbolinks:load', function() {
             // mday = date.substring(0, 2);
             mday = date;
             n_selected = 0;
+
             if ($('#total_price').empty()== false) {
               $('#total_price').remove();
             }
@@ -61,18 +62,18 @@ $(document).on('turbolinks:load', function() {
         prevText: '< Ant',
         nextText: 'Sig >',
         currentText: 'Hoy',
-        maxDate: "+1w",
+        maxDate: "+2d",
         minDate: 0
     });
 
 });
-
 
 // Creation of void table with times and IDs
 function createTable(json){
 //Erasing previous data in case it had
     eraseTable();
     eraseReservations();
+
 
     $('#dynamictable').append('<table></table>');
     var table = $('#dynamictable').children();
@@ -136,7 +137,7 @@ $(document).on( 'turbolinks:load', function(){
         var p = ($(this).attr('id'));//ID's selected point
         if (miArray[p] == 0){
           if (first_time){
-            $('#booking').append("<h4> <p> Selección: </p> </h4>");
+            $('#selection').append("<h4> <p>  Tu selección: </p> </h4>");
             $('#subtotal').append("<h4> <p> Total a pagar: </p> </h4>");
 
             first_time = false;
@@ -293,6 +294,14 @@ if ($('#total_price').empty()== false) {
   $('#total_price').remove();
 }
 $('#total_price').append("<p>"+pprice*n_selected+ "€"+"<p>");
+if (n_selected > 0) {
+  $('#payment_button').removeClass('hide');
+  $('#payment_button').addClass('show');
+}
+else {
+  $('#payment_button').removeClass('show');
+  $('#payment_button').addClass('hide');
+  }
 }
 
 function finalCheck(){

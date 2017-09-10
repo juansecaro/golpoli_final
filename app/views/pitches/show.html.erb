@@ -1,24 +1,49 @@
 <div class="row">
   <div class="col-md-2">
-<p>
-  <strong><%= @pitch.name %></strong>
-  <p>    Seleccione fecha:  </p>
-</p>
+    <p>
+      <strong><%= @pitch.name %></strong>
+      <p>
+        Seleccione fecha:
+      </p>
+    </p>
 
-<p><input type="text" class="datepicker" onkeydown="return false" onCopy="return false" onDrag="return false" onDrop="return false" onPaste="return false" autocomplete=off></p>
-
-
+    <p><input type="text" class="datepicker" onkeydown="return false" onCopy="return false" onDrag="return false" onDrop="return false" onPaste="return false" autocomplete=off></p>
 
     <table>
       <thead>
         Leyenda
       </thead>
       <tbody>
-        <tr><td id="desc_libre"></td><td><small>Libre</small></td></tr>
-        <tr><td id="desc_reservado"></td><td><small>Reservado</small></td></tr>
-        <tr><td id="desc_otros"></td><td><small>No reservable</small></td></tr>
-        <tr><td id="desc_cerrado"></td><td><small>Cerrado al público</small></td></tr>
-        <tr><td id="desc_select"></td><td><small>Selección actual</small></td></tr>
+        <tr>
+          <td id="desc_libre"></td>
+          <td>
+            <small>Libre</small>
+          </td>
+        </tr>
+        <tr>
+          <td id="desc_reservado"></td>
+          <td>
+            <small>Reservado</small>
+          </td>
+        </tr>
+        <tr>
+          <td id="desc_otros"></td>
+          <td>
+            <small>No reservable</small>
+          </td>
+        </tr>
+        <tr>
+          <td id="desc_cerrado"></td>
+          <td>
+            <small>Cerrado al público</small>
+          </td>
+        </tr>
+        <tr>
+          <td id="desc_select"></td>
+          <td>
+            <small>Selección actual</small>
+          </td>
+        </tr>
       </tbody>
     </table>
   </div>
@@ -28,35 +53,58 @@
     </p>
   </div>
   <p>
-    <div id="booking" class="col-md-3"></div>
+    <div class="col-md-3">
+      <div id="selection"></div>
+      <div id="booking"></div>
+
+    </div>
     <div class="col-md-3">
       <div id="subtotal"></div>
-      <div id="total_price"></div>
-      <div id="payment_button">
-        <%= link_to 'Pagar', class: "btn btn-default" %>
+      <div id="total_price" class="h4"></div>
+      <div id="payment_button" class="hide">
+        <%= form_tag charges_path, id: 'chargeForm' do %>
+
+        <% if flash[:error].present? %>
+        <div id="error_explanation">
+          <p><%= flash[:error] %></p>
+        </div>
+        <% end %>
+
+        <script src="https://checkout.stripe.com/checkout.js"></script>
+        <%= hidden_field_tag 'stripeToken' %>
+        <%= hidden_field_tag 'stripeEmail' %>
+        <%= hidden_field_tag 'amount', @pitch.price_in_cents %>
+        <button id="btn-buy" type="button" class="btn btn-primary">
+          <span class="glyphicon glyphicon-time"></span>
+          Reservar</button>
+
+        <script>
+          var handler = StripeCheckout.configure({
+            key: '<%= Rails.configuration.stripe[:publishable_key] %>',
+            token: function (token, arg) {
+              document.getElementById("stripeToken").value = token.id;
+              document.getElementById("stripeEmail").value = token.email;
+              document.getElementById("chargeForm").submit();
+            }
+          });
+          document.getElementById('btn-buy').addEventListener('click', function (e) {
+            handler.open({name: 'Reserva de pista', description: '<%= @pitch.name %>, by  ( <%= @pitch.normal_price %> € )', amount: document.getElementById("amount").value});
+            e.preventDefault();
+          })
+        </script>
+
+        <% end %>
       </div>
 
     </div>
   </p>
 
-
-
-
-
 </div>
-
-
-
-
 
 <div>
   <input type="hidden" id='pitch_id' value='<%= @pitch.id %>'>
   <input type="hidden" id='pitch_price' value='<%= @pitch.normal_price %>'>
   <!-- <p id='date'> </p> -->
 </div>
-
-
-
-
 
 <!-- <input type="button" class="btn btn-info" onclick="JSONBack();" value="¡Reserva!" /> -->

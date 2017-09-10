@@ -34,7 +34,7 @@ gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 #gem 'pg', group: :production
 gem 'jquery-ui-rails', '~> 5.0', '>= 5.0.5'
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
-gem 'better_errors', '~> 2.1', '>= 2.1.1'
+
 gem 'awesome_print', '~> 1.7', :require => 'ap'
 # for forms
 gem 'simple_form', '~> 3.5'
@@ -57,6 +57,7 @@ gem 'jbuilder', '~> 2.5'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+  gem 'better_errors', '~> 2.1', '>= 2.1.1'
 end
 
 group :development do
