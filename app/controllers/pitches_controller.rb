@@ -10,7 +10,7 @@ class PitchesController < ApplicationController
   # GET /pitches/1
   # GET /pitches/1.json
   def show
-    
+    @city = Institution.find_by_id(params[:institution_id])
   end
 
   # GET /pitches/new
@@ -69,8 +69,14 @@ class PitchesController < ApplicationController
     render json: @schedule[0]
   end
 
+  def summary
+    #@selection = params[:]
+  end
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
+
     def set_pitch
       @pitch = Pitch.find(params[:id])
     end

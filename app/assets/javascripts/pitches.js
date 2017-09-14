@@ -73,6 +73,7 @@ function createTable(json){
 //Erasing previous data in case it had
     eraseTable();
     eraseReservations();
+    eraseOptions();
 
 
     $('#dynamictable').append('<table></table>');
@@ -127,6 +128,14 @@ function eraseReservations(){
             miArray[i]=0;
         }
     }
+}
+function eraseOptions()
+{
+  if ($("#payment_button").hasClass("show"))
+  {
+    $('#payment_button').removeClass('show');
+    $('#payment_button').addClass('hide');
+  }
 }
 //Selection-Deselection specifics cells
 $(document).on( 'turbolinks:load', function(){
@@ -258,6 +267,7 @@ function arrayToJSON(){
     globalJSON.h47 = miArray[47];
 
 }
+function alarma (){alert("Funciona");}
 // Just put 0 back to the number if < 9
 function formattedH (h)
 {
