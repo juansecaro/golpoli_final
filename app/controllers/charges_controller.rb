@@ -4,6 +4,7 @@ class ChargesController < ApplicationController
 
   def create
     # Amount in cents
+
     @pitch = Pitch.find
 
     customer = Stripe::Customer.create(

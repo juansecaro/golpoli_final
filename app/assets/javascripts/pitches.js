@@ -1,4 +1,5 @@
 var globalJSON;
+var oldData;
 var miArray = new Array(48);
 var mday;
 var id;
@@ -32,6 +33,7 @@ $(document).on('turbolinks:load', function() {
                 success: function(data) {
                     // data is a json object
                     globalJSON = data;
+                    oldData = data;
                     // Start creating table with JSON's information
                     createTable(data);
 
@@ -175,12 +177,12 @@ function JSONBack()
         dataType: 'json',
         cache: false,
         data: { day: mday, pitch_id: id },
-        success: function(data) {
-            if (!compareObjects(data,globalJSON)){// if values had been modified for the same pairs
-                arrayToJSON(); // Now global JSON have the changes
-                ////////////////////////// Second and valid json to the server
+        success: function(newData) {
+            if (compareObjects(oldData,newData)){// if they're the same, values hasn't been modified while deciding
+                arrayToJSON(); // Now globalJSON have the changes
+
                 $.ajax({
-                    url: '/horarios',
+                    url: '/summary',
                     type: 'POST',
                     dataType: 'json',
                     cache: false,
@@ -190,13 +192,12 @@ function JSONBack()
                     },
                     error: function() {
                         console.log('error');
-                        console.log('complete json loading');
-                        console.log(xhr.getAllResponseHeaders());
                     }
                 });
                 //////////////////////////
                 console.log("Iguales");
-                alert("All right"); }
+                alert("All right");
+              }
             else {
                 alert("Otro usuario ha hecho reservas en esta pista mientas decidias. Se actualizarán los horarios");
                 location.reload(forceGet = true); //Page update from the server
@@ -217,6 +218,8 @@ function JSONBack()
 //Save modifications to be sent as json to the server
 function arrayToJSON(){
 
+    globalJSON.pitch_id = $('#pitch_id').val();
+    globalJSON.date_ref = mday;
     globalJSON.h0 = miArray[0];
     globalJSON.h1 = miArray[1];
     globalJSON.h2 = miArray[2];
@@ -265,7 +268,6 @@ function arrayToJSON(){
     globalJSON.h45 = miArray[45];
     globalJSON.h46 = miArray[46];
     globalJSON.h47 = miArray[47];
-
 }
 function alarma (){alert("Funciona");}
 // Just put 0 back to the number if < 9

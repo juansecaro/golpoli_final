@@ -70,9 +70,12 @@ class PitchesController < ApplicationController
   end
 
   def summary
-    #@selection = params[:]
+    @selection = params[:globalJSON]
   end
 
+  def confirmation
+
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
