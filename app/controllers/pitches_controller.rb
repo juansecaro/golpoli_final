@@ -69,12 +69,10 @@ class PitchesController < ApplicationController
     render json: @schedule[0]
   end
 
-  def summary
-    @selection = params[:globalJSON]
-  end
-
-  def confirmation
-
+  def confirm
+    our_date = Date.strptime(params[:fecha], '%d/%m/%Y')
+    n_selected = params[:seleccionados]
+    @schedule = Schedule.where("date_ref = ? and pitch_id = ?", our_date , params[:pitch_id])
   end
 
   private

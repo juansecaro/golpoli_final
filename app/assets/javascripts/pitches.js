@@ -1,5 +1,3 @@
-var globalJSON;
-var oldData;
 var miArray = new Array(48);
 var mday;
 var id;
@@ -18,11 +16,8 @@ $(document).on('turbolinks:load', function() {
               $('#total_price').remove();
             }
 
-
             //Pitch id saved in hidden value
             id = document.getElementById("pitch_id").value;
-
-
 
             $.ajax({
                 url: '/horarios',
@@ -32,8 +27,7 @@ $(document).on('turbolinks:load', function() {
                 data: { day: mday, pitch_id: id },
                 success: function(data) {
                     // data is a json object
-                    globalJSON = data;
-                    oldData = data;
+
                     // Start creating table with JSON's information
                     createTable(data);
 
@@ -108,8 +102,64 @@ function createTable(json){
         }
     }
     console.log(miArray);
+    loadingValuesInHiddenTags();
 }
 
+function loadingValuesInHiddenTags()
+{
+    $('#s0').val(miArray[0]);
+    $('#s1').val(miArray[1]);
+    $('#s2').val(miArray[2]);
+    $('#s3').val(miArray[3]);
+    $('#s4').val(miArray[4]);
+    $('#s5').val(miArray[5]);
+    $('#s6').val(miArray[6]);
+    $('#s7').val(miArray[7]);
+    $('#s8').val(miArray[8]);
+    $('#s9').val(miArray[9]);
+    $('#s10').val(miArray[10]);
+    $('#s11').val(miArray[11]);
+    $('#s12').val(miArray[12]);
+    $('#s13').val(miArray[13]);
+    $('#s14').val(miArray[14]);
+    $('#s15').val(miArray[15]);
+    $('#s16').val(miArray[16]);
+    $('#s17').val(miArray[17]);
+    $('#s18').val(miArray[18]);
+    $('#s19').val(miArray[19]);
+    $('#s20').val(miArray[20]);
+    $('#s21').val(miArray[21]);
+    $('#s22').val(miArray[22]);
+    $('#s23').val(miArray[23]);
+    $('#s24').val(miArray[24]);
+    $('#s25').val(miArray[25]);
+    $('#s26').val(miArray[26]);
+    $('#s27').val(miArray[27]);
+    $('#s28').val(miArray[28]);
+    $('#s29').val(miArray[29]);
+    $('#s30').val(miArray[30]);
+    $('#s31').val(miArray[31]);
+    $('#s32').val(miArray[32]);
+    $('#s33').val(miArray[33]);
+    $('#s34').val(miArray[34]);
+    $('#s35').val(miArray[35]);
+    $('#s36').val(miArray[36]);
+    $('#s37').val(miArray[37]);
+    $('#s38').val(miArray[38]);
+    $('#s39').val(miArray[39]);
+    $('#s40').val(miArray[40]);
+    $('#s41').val(miArray[41]);
+    $('#s42').val(miArray[42]);
+    $('#s43').val(miArray[43]);
+    $('#s44').val(miArray[44]);
+    $('#s45').val(miArray[45]);
+    $('#s46').val(miArray[46]);
+    $('#s47').val(miArray[47]);
+
+    $('#sDate').val(mday);
+    $('#sPitch').val($('#pitch_id').val());
+
+}
 // Removing old tables for different days selections
 function eraseTable(){
     var el = document.getElementById('dynamictable');
@@ -118,7 +168,6 @@ function eraseTable(){
     }
 }
 function eraseReservations(){
-
     //Clean up html
     var el = document.getElementById('booking');
     while( el.hasChildNodes() ){
@@ -154,121 +203,26 @@ $(document).on( 'turbolinks:load', function(){
             first_time = false;
           }
             miArray[p] = 9;
+            $('#s'+p).val(9);// hidden
             $('#'+ p).css({"background-color": "red"});
             $('#booking').append("<p id="+'m'+p+">"+hourById(p)+"<p>");
             n_selected++;
+            $('#sSelected').val(n_selected);
             currentPrice();
         }
         else if (miArray[p] == 9) {
             miArray[p]=0;
+            $('#s'+p).val(0);//hidden
             $('#'+ p).css({"background-color": "#008000"});
             $('#m'+p ).remove();
             n_selected--;
+            $('#sSelected').val(n_selected);
             currentPrice();
         }
     });
 });
-//Reconstruct JSON with changes to be validated
-function JSONBack()
-{
-    $.ajax({
-        url: '/horarios',
-        type: 'GET',
-        dataType: 'json',
-        cache: false,
-        data: { day: mday, pitch_id: id },
-        success: function(newData) {
-            if (compareObjects(oldData,newData)){// if they're the same, values hasn't been modified while deciding
-                arrayToJSON(); // Now globalJSON have the changes
 
-                $.ajax({
-                    url: '/summary',
-                    type: 'POST',
-                    dataType: 'json',
-                    cache: false,
-                    data: globalJSON,
-                    success: function(response) {
-                        console.log(response.status);
-                    },
-                    error: function() {
-                        console.log('error');
-                    }
-                });
-                //////////////////////////
-                console.log("Iguales");
-                alert("All right");
-              }
-            else {
-                alert("Otro usuario ha hecho reservas en esta pista mientas decidias. Se actualizarán los horarios");
-                location.reload(forceGet = true); //Page update from the server
-                console.log("Diferentes");
-            }
-        },
-        error: function() {
-            console.log('error');
-            alert('Error al cargar los horarios. Por favor, inténtelo de nuevo más tarde.');
-        },
-        complete: function(xhr) {
-            console.log('complete json loading');
-            console.log(xhr.getAllResponseHeaders());
-        }
-    });
 
-}
-//Save modifications to be sent as json to the server
-function arrayToJSON(){
-
-    globalJSON.pitch_id = $('#pitch_id').val();
-    globalJSON.date_ref = mday;
-    globalJSON.h0 = miArray[0];
-    globalJSON.h1 = miArray[1];
-    globalJSON.h2 = miArray[2];
-    globalJSON.h3 = miArray[3];
-    globalJSON.h4 = miArray[4];
-    globalJSON.h5 = miArray[5];
-    globalJSON.h6 = miArray[6];
-    globalJSON.h7 = miArray[7];
-    globalJSON.h8 = miArray[8];
-    globalJSON.h9 = miArray[9];
-    globalJSON.h10 = miArray[10];
-    globalJSON.h11 = miArray[11];
-    globalJSON.h12 = miArray[12];
-    globalJSON.h13 = miArray[13];
-    globalJSON.h14 = miArray[14];
-    globalJSON.h15 = miArray[15];
-    globalJSON.h16 = miArray[16];
-    globalJSON.h17 = miArray[17];
-    globalJSON.h18 = miArray[18];
-    globalJSON.h19 = miArray[19];
-    globalJSON.h20 = miArray[20];
-    globalJSON.h21 = miArray[21];
-    globalJSON.h22 = miArray[22];
-    globalJSON.h23 = miArray[23];
-    globalJSON.h24 = miArray[24];
-    globalJSON.h25 = miArray[25];
-    globalJSON.h26 = miArray[26];
-    globalJSON.h27 = miArray[27];
-    globalJSON.h28 = miArray[28];
-    globalJSON.h29 = miArray[29];
-    globalJSON.h30 = miArray[30];
-    globalJSON.h31 = miArray[31];
-    globalJSON.h32 = miArray[32];
-    globalJSON.h33 = miArray[33];
-    globalJSON.h34 = miArray[34];
-    globalJSON.h35 = miArray[35];
-    globalJSON.h36 = miArray[36];
-    globalJSON.h37 = miArray[37];
-    globalJSON.h38 = miArray[38];
-    globalJSON.h39 = miArray[39];
-    globalJSON.h40 = miArray[40];
-    globalJSON.h41 = miArray[41];
-    globalJSON.h42 = miArray[42];
-    globalJSON.h43 = miArray[43];
-    globalJSON.h44 = miArray[44];
-    globalJSON.h45 = miArray[45];
-    globalJSON.h46 = miArray[46];
-    globalJSON.h47 = miArray[47];
-}
 function alarma (){alert("Funciona");}
 // Just put 0 back to the number if < 9
 function formattedH (h)

@@ -16,8 +16,7 @@ Rails.application.routes.draw do
   # JSON Schedule handdling
   get '/horarios', to: 'pitches#get_schedule'
   # JSON with changes
-  post '/summary', to: 'pitches#summary'
-  get '/confirm', to: 'pitches#confirm'
+  post '/confirm', to: 'pitches#confirm'
 
 
 
