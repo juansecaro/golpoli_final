@@ -1,1 +1,64 @@
-<%= @schedule.inspect %>
+<% @sel.each do |h| %>
+<input type="hidden" name='horario[]' value="<%=h%>" />
+<% end %>
+
+
+<div>
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <p><h3>Por favor, confirme que los datos seleccionados son correctos antes de proceder a la reserva.</h3></p>
+      <p><h4>Tenga en cuenta que hasta que la reserva no se confirme otro usuario podría reservar uno o varios tramos de su selección si usted tarda en confirmar, haciendo su preselección nula. Actúe con rapidez ;)</h4> </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3" id="excerpt">
+      <p>Pista alquilada: <%= @pitch.name %> de <%= @institution.city %></p>
+      <p>
+        Horarios seleccionado:
+
+
+
+        <p id="hidden_hours"></p>
+      </p>
+
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+var values = $("input[name='horario[]']").map(function(){return $(this).val();}).get();
+for (var i=0; i<values.length; i++){ $('#hidden_hours').append("<p>"+ hourById(values[i]) +"<p>"); }
+</script>
+
+<%= form_tag charges_path, id: 'chargeForm' do %>
+
+<% if flash[:error].present? %>
+<div id="error_explanation">
+  <p><%= flash[:error] %></p>
+</div>
+<% end %>
+
+<script src="https://checkout.stripe.com/checkout.js"></script>
+<%= hidden_field_tag 'stripeToken' %>
+<%= hidden_field_tag 'stripeEmail' %>
+<%= hidden_field_tag 'amount', @pitch.price_in_cents*(@n_selected.to_i) %>
+<button id="btn-buy" type="button" class="btn btn-primary">
+  <span class="glyphicon glyphicon-time"></span>
+  Reservar</button>
+
+<script>
+  var handler = StripeCheckout.configure({
+    key: '<%= Rails.configuration.stripe[:publishable_key] %>',
+    token: function (token, arg) {
+      document.getElementById("stripeToken").value = token.id;
+      document.getElementById("stripeEmail").value = token.email;
+      document.getElementById("chargeForm").submit();
+    }
+  });
+  document.getElementById('btn-buy').addEventListener('click', function (e) {
+    handler.open({name: 'Alquiler de pista', description: '<%= @pitch.name %>', amount: document.getElementById("amount").value});
+    e.preventDefault();
+  })
+</script>
+
+<% end %>

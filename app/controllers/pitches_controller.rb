@@ -71,12 +71,25 @@ class PitchesController < ApplicationController
 
   def confirm
     our_date = Date.strptime(params[:fecha], '%d/%m/%Y')
-    n_selected = params[:seleccionados]
+    @n_selected = params[:seleccionados]
+    horario = params[:horario]
+    @sel = positions(horario)
     @schedule = Schedule.where("date_ref = ? and pitch_id = ?", our_date , params[:pitch_id])
+    @pitch = Pitch.find_by_id(params[:pitch_id])
+    @institution = Institution.find_by_id(@pitch.institution_id)
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
+    def positions (horario)
+      posiciones = []
+      horario.each_with_index do  |item, index|
+        if item == "9"
+          posiciones.push(index)
+        end
+      end
+      return posiciones
+    end
 
     def set_pitch
       @pitch = Pitch.find(params[:id])

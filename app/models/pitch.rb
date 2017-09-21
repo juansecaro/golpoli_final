@@ -5,4 +5,5 @@ class Pitch < ApplicationRecord
   def price_in_cents
     (self.normal_price*100).to_i
   end
+
 end

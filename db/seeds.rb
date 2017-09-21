@@ -55,7 +55,7 @@ Pitch.create!(
 
 Schedule.create!(
 pitch_id: 1,
-date_ref: DateTime.new(2017, 9, 17),
+date_ref: DateTime.new(2017, 9, 20),
 id:1,
 h0: nil,
 h1: nil,
@@ -109,7 +109,7 @@ h47: nil,
 
 Schedule.create!(
 pitch_id: 1,
-date_ref: DateTime.new(2017, 9, 18),
+date_ref: DateTime.new(2017, 9, 21),
 id:2,
 h0: nil,
 h1: nil,
@@ -162,7 +162,7 @@ h47: nil,
 )
 Schedule.create!(
 pitch_id: 1,
-date_ref: DateTime.new(2017, 9, 19),
+date_ref: DateTime.new(2017, 9, 22),
 id:3,
 h0: nil,
 h1: nil,

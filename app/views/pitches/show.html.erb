@@ -2,7 +2,7 @@
   <div class="col-md-2">
     <p>
       <strong><%= @pitch.name %> de <%= @city.city %> </strong>
-
+      
       <p>
         Seleccione fecha:
       </p>
@@ -64,7 +64,64 @@
       <div id="total_price" class="h4"></div>
       <div id="payment_button" class="hide">
 
+        <form action="/confirm" method="post">
+          <div id="hiddens">
+            <input type="hidden"  id="s0" name='horario[]' value="" />
+            <input type="hidden"  id="s1" name='horario[]' value="" />
+            <input type="hidden"  id="s2" name='horario[]' value="" />
+            <input type="hidden"  id="s3" name='horario[]' value="" />
+            <input type="hidden"  id="s4" name='horario[]' value="" />
+            <input type="hidden"  id="s5" name='horario[]' value="" />
+            <input type="hidden"  id="s6" name='horario[]' value="" />
+            <input type="hidden"  id="s7" name='horario[]' value="" />
+            <input type="hidden"  id="s8" name='horario[]' value="" />
+            <input type="hidden"  id="s9" name='horario[]' value="" />
+            <input type="hidden"  id="s10" name='horario[]' value="" />
+            <input type="hidden"  id="s11" name='horario[]' value="" />
+            <input type="hidden"  id="s12" name='horario[]' value="" />
+            <input type="hidden"  id="s13" name='horario[]' value="" />
+            <input type="hidden"  id="s14" name='horario[]' value="" />
+            <input type="hidden"  id="s15" name='horario[]' value="" />
+            <input type="hidden"  id="s16" name='horario[]' value="" />
+            <input type="hidden"  id="s17" name='horario[]' value="" />
+            <input type="hidden"  id="s18" name='horario[]' value="" />
+            <input type="hidden"  id="s19" name='horario[]' value="" />
+            <input type="hidden"  id="s20" name='horario[]' value="" />
+            <input type="hidden"  id="s21" name='horario[]' value="" />
+            <input type="hidden"  id="s22" name='horario[]' value="" />
+            <input type="hidden"  id="s23" name='horario[]' value="" />
+            <input type="hidden"  id="s24" name='horario[]' value="" />
+            <input type="hidden"  id="s25" name='horario[]' value="" />
+            <input type="hidden"  id="s26" name='horario[]' value="" />
+            <input type="hidden"  id="s27" name='horario[]' value="" />
+            <input type="hidden"  id="s28" name='horario[]' value="" />
+            <input type="hidden"  id="s29" name='horario[]' value="" />
+            <input type="hidden"  id="s30" name='horario[]' value="" />
+            <input type="hidden"  id="s31" name='horario[]' value="" />
+            <input type="hidden"  id="s32" name='horario[]' value="" />
+            <input type="hidden"  id="s33" name='horario[]' value="" />
+            <input type="hidden"  id="s34" name='horario[]' value="" />
+            <input type="hidden"  id="s35" name='horario[]' value="" />
+            <input type="hidden"  id="s36" name='horario[]' value="" />
+            <input type="hidden"  id="s37" name='horario[]' value="" />
+            <input type="hidden"  id="s38" name='horario[]' value="" />
+            <input type="hidden"  id="s39" name='horario[]' value="" />
+            <input type="hidden"  id="s40" name='horario[]' value="" />
+            <input type="hidden"  id="s41" name='horario[]' value="" />
+            <input type="hidden"  id="s42" name='horario[]' value="" />
+            <input type="hidden"  id="s43" name='horario[]' value="" />
+            <input type="hidden"  id="s44" name='horario[]' value="" />
+            <input type="hidden"  id="s45" name='horario[]' value="" />
+            <input type="hidden"  id="s46" name='horario[]' value="" />
+            <input type="hidden"  id="s47" name='horario[]' value="" />
+            <input type="hidden"  id="sDate" name='fecha' value="" />
+            <input type="hidden"  id="sPitch" name='pitch_id' value="" />
+            <input type="hidden"  id="sSelected" name='seleccionados' value="" />
+            <input type="hidden" value="<%= form_authenticity_token() %>" name="authenticity_token"/>
 
+            <button type="submit" class="btn btn-primary">Siguiente</button>
+          </div>
+        </form>
 
       </div>
 
@@ -77,64 +134,7 @@
   <input type="hidden" id='pitch_price' value='<%= @pitch.normal_price %>'>
   <!-- <p id='date'> </p> -->
 </div>
-<form action="/confirm" method="post">
-  <div id="hiddens">
-    <input type="hidden"  id="s0" name='horario[]' value="" />
-    <input type="hidden"  id="s1" name='horario[]' value="" />
-    <input type="hidden"  id="s2" name='horario[]' value="" />
-    <input type="hidden"  id="s3" name='horario[]' value="" />
-    <input type="hidden"  id="s4" name='horario[]' value="" />
-    <input type="hidden"  id="s5" name='horario[]' value="" />
-    <input type="hidden"  id="s6" name='horario[]' value="" />
-    <input type="hidden"  id="s7" name='horario[]' value="" />
-    <input type="hidden"  id="s8" name='horario[]' value="" />
-    <input type="hidden"  id="s9" name='horario[]' value="" />
-    <input type="hidden"  id="s10" name='horario[]' value="" />
-    <input type="hidden"  id="s11" name='horario[]' value="" />
-    <input type="hidden"  id="s12" name='horario[]' value="" />
-    <input type="hidden"  id="s13" name='horario[]' value="" />
-    <input type="hidden"  id="s14" name='horario[]' value="" />
-    <input type="hidden"  id="s15" name='horario[]' value="" />
-    <input type="hidden"  id="s16" name='horario[]' value="" />
-    <input type="hidden"  id="s17" name='horario[]' value="" />
-    <input type="hidden"  id="s18" name='horario[]' value="" />
-    <input type="hidden"  id="s19" name='horario[]' value="" />
-    <input type="hidden"  id="s20" name='horario[]' value="" />
-    <input type="hidden"  id="s21" name='horario[]' value="" />
-    <input type="hidden"  id="s22" name='horario[]' value="" />
-    <input type="hidden"  id="s23" name='horario[]' value="" />
-    <input type="hidden"  id="s24" name='horario[]' value="" />
-    <input type="hidden"  id="s25" name='horario[]' value="" />
-    <input type="hidden"  id="s26" name='horario[]' value="" />
-    <input type="hidden"  id="s27" name='horario[]' value="" />
-    <input type="hidden"  id="s28" name='horario[]' value="" />
-    <input type="hidden"  id="s29" name='horario[]' value="" />
-    <input type="hidden"  id="s30" name='horario[]' value="" />
-    <input type="hidden"  id="s31" name='horario[]' value="" />
-    <input type="hidden"  id="s32" name='horario[]' value="" />
-    <input type="hidden"  id="s33" name='horario[]' value="" />
-    <input type="hidden"  id="s34" name='horario[]' value="" />
-    <input type="hidden"  id="s35" name='horario[]' value="" />
-    <input type="hidden"  id="s36" name='horario[]' value="" />
-    <input type="hidden"  id="s37" name='horario[]' value="" />
-    <input type="hidden"  id="s38" name='horario[]' value="" />
-    <input type="hidden"  id="s39" name='horario[]' value="" />
-    <input type="hidden"  id="s40" name='horario[]' value="" />
-    <input type="hidden"  id="s41" name='horario[]' value="" />
-    <input type="hidden"  id="s42" name='horario[]' value="" />
-    <input type="hidden"  id="s43" name='horario[]' value="" />
-    <input type="hidden"  id="s44" name='horario[]' value="" />
-    <input type="hidden"  id="s45" name='horario[]' value="" />
-    <input type="hidden"  id="s46" name='horario[]' value="" />
-    <input type="hidden"  id="s47" name='horario[]' value="" />
-    <input type="hidden"  id="sDate" name='fecha' value="" />
-    <input type="hidden"  id="sPitch" name='pitch_id' value="" />
-    <input type="hidden"  id="sSelected" name='seleccionados' value="" />
-    <input type="hidden" value="<%= form_authenticity_token() %>" name="authenticity_token"/>
 
-    <button type="submit" title="Lo que"></button>
-  </div>
-</form>
 
 
 <!-- <input type="button" class="btn btn-info" onclick="JSONBack();" value="¡Reserva!" /> -->

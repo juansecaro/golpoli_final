@@ -5,10 +5,11 @@ var n_selected = 0;
 var pprice; //Pitch normal price
 var first_time = true;
 
+
 $(document).on('turbolinks:load', function() {
     $('.datepicker').datepicker({
         onSelect: function(date) {
-            // mday = date.substring(0, 2);
+
             mday = date;
             n_selected = 0;
 
@@ -70,11 +71,11 @@ function createTable(json){
     eraseTable();
     eraseReservations();
     eraseOptions();
-
+    eraseHiddens();
 
     $('#dynamictable').append('<table></table>');
     var table = $('#dynamictable').children();
-    table.append("<tr><td colspan='3'>Nombre de la pista</td></tr>");
+    table.append("<tr><td colspan='3'>Horarios</td></tr>");
     table.append("<tr><td>Hora</td><td>30 min</td><td>30 min</td></tr>");
     var root = "h";
     var val1,val2;
@@ -160,6 +161,61 @@ function loadingValuesInHiddenTags()
     $('#sPitch').val($('#pitch_id').val());
 
 }
+function eraseHiddens(){
+
+  $('#s0').val("");
+  $('#s1').val("");
+  $('#s2').val("");
+  $('#s3').val("");
+  $('#s4').val("");
+  $('#s5').val("");
+  $('#s6').val("");
+  $('#s7').val("");
+  $('#s8').val("");
+  $('#s9').val("");
+  $('#s10').val("");
+  $('#s11').val("");
+  $('#s12').val("");
+  $('#s13').val("");
+  $('#s14').val("");
+  $('#s15').val("");
+  $('#s16').val("");
+  $('#s17').val("");
+  $('#s18').val("");
+  $('#s19').val("");
+  $('#s20').val("");
+  $('#s21').val("");
+  $('#s22').val("");
+  $('#s23').val("");
+  $('#s24').val("");
+  $('#s25').val("");
+  $('#s26').val("");
+  $('#s27').val("");
+  $('#s28').val("");
+  $('#s29').val("");
+  $('#s30').val("");
+  $('#s31').val("");
+  $('#s32').val("");
+  $('#s33').val("");
+  $('#s34').val("");
+  $('#s35').val("");
+  $('#s36').val("");
+  $('#s37').val("");
+  $('#s38').val("");
+  $('#s39').val("");
+  $('#s40').val("");
+  $('#s41').val("");
+  $('#s42').val("");
+  $('#s43').val("");
+  $('#s44').val("");
+  $('#s45').val("");
+  $('#s46').val("");
+  $('#s47').val("");
+
+  $('#sDate').val("");
+  $('#sPitch').val("");
+
+}
 // Removing old tables for different days selections
 function eraseTable(){
     var el = document.getElementById('dynamictable');
@@ -222,8 +278,6 @@ $(document).on( 'turbolinks:load', function(){
     });
 });
 
-
-function alarma (){alert("Funciona");}
 // Just put 0 back to the number if < 9
 function formattedH (h)
 {
