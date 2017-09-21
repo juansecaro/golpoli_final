@@ -70,11 +70,11 @@ class PitchesController < ApplicationController
   end
 
   def confirm
-    our_date = Date.strptime(params[:fecha], '%d/%m/%Y')
+    @our_date = Date.strptime(params[:fecha], '%d/%m/%Y')
     @n_selected = params[:seleccionados]
     horario = params[:horario]
     @sel = positions(horario)
-    @schedule = Schedule.where("date_ref = ? and pitch_id = ?", our_date , params[:pitch_id])
+    @schedule = Schedule.where("date_ref = ? and pitch_id = ?", @our_date , params[:pitch_id])
     @pitch = Pitch.find_by_id(params[:pitch_id])
     @institution = Institution.find_by_id(@pitch.institution_id)
   end

@@ -324,6 +324,7 @@ else {
   }
 }
 
+
 function finalCheck(){
   var max_selected;
   var pass = true;
