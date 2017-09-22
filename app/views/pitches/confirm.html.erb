@@ -2,6 +2,10 @@
 <input type="hidden" name='horario[]' value="<%=h%>" />
 <% end %>
 <input type="hidden" id="fecha" value="<%= @our_date%>" />
+<script src="https://checkout.stripe.com/checkout.js"></script>
+<%= hidden_field_tag 'stripeToken' %>
+<%= hidden_field_tag 'stripeEmail' %>
+<%= hidden_field_tag 'amount', @pitch.price_in_cents*(@n_selected.to_i) %>
 
 
 <div>
@@ -11,17 +15,28 @@
 
     </div>
   </div>
+
   <div class="row">
     <div class="col-md-6 col-md-offset-3" id="excerpt">
-      <p>Pista alquilada: <b><%= @pitch.name %></b> de <b><%= @institution.city %></b></p>
+      <div class="col-md-6">
+        <p>Pista alquilada:</p> <p><b><%= @pitch.name %></b> de <b><%= @institution.city %></b></p>
+        <p>
+          Fecha y hora seleccionadas:
+          <p id="hidden_hours"></p>
+        </p>
+        <p id="due"></p>
+      </div>
+      <div class="col-md-6">
+        <%= image_tag(@pitch.image, class:"img-responsive", alt: @pitch.name) %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
       <p>
-        Fecha y hora seleccionadas:
-
-        <p id="hidden_hours"></p>
+        <h5  id="warning">Tenga en cuenta que mientras la reserva no esté confirmada y pagada otro usuario podría reservar uno o varios tramos de su preselección de tal forma que si este la tramita antes que usted la suya quedaría anulada. No se demore.</h5>
       </p>
-
-        <p><h5>Tenga en cuenta que hasta que la reserva no se confirme otro usuario podría reservar uno o varios tramos de su selección si usted tarda en confirmar, haciendo su preselección nula. Actúe con rapidez ;)</h5> </p>
-
     </div>
   </div>
 </div>
@@ -33,7 +48,8 @@
     var options = { weekday: "long", year: "numeric", month: "long", day: "numeric" };
     var str_fecha = date.toLocaleTimeString("es-ES", options);
     str_fecha = str_fecha.slice(0, -8);
-    $('#hidden_hours').append("<p><b>&emsp; "+ str_fecha +"</b><p>");
+    $('#hidden_hours').append("<p><b> "+ str_fecha +"</b><p>");
+    $('#due').append("<p>Coste:<b> "+ ($('#amount').val()/100) +" €</b><p>");
 
     var values = $("input[name='horario[]']").map(function(){return $(this).val();}).get();
     for (var i=0; i<values.length; i++){ $('#hidden_hours').append("<p><b>&emsp;"+ hourById(values[i]) +"</b><p>"); }
@@ -47,13 +63,12 @@
 </div>
 <% end %>
 
-<script src="https://checkout.stripe.com/checkout.js"></script>
-<%= hidden_field_tag 'stripeToken' %>
-<%= hidden_field_tag 'stripeEmail' %>
-<%= hidden_field_tag 'amount', @pitch.price_in_cents*(@n_selected.to_i) %>
-<button id="btn-buy" type="button" class="btn btn-primary">
-  <span class="glyphicon glyphicon-time"></span>
-  Reservar</button>
+<div class="row">
+  <button id="btn-buy" type="button" class="btn btn-primary center-block">
+    <span class="glyphicon glyphicon-time"></span>
+    Reservar</button>
+</div>
+
 
 <script>
   var handler = StripeCheckout.configure({
@@ -65,7 +80,13 @@
     }
   });
   document.getElementById('btn-buy').addEventListener('click', function (e) {
-    handler.open({name: 'Alquiler de pista', description: '<%= @pitch.name %>', amount: document.getElementById("amount").value});
+    handler.open({
+      name: 'Alquiler de pista',
+      locale: 'auto',
+      currency: 'eur',
+      description: '<%= @pitch.name %>',
+      amount: document.getElementById("amount").value
+    });
     e.preventDefault();
   })
 </script>
