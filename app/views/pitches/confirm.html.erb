@@ -1,12 +1,6 @@
 <% @sel.each do |h| %>
 <input type="hidden" name='horario[]' value="<%=h%>" />
 <% end %>
-<input type="hidden" id="fecha" value="<%= @our_date%>" />
-<script src="https://checkout.stripe.com/checkout.js"></script>
-<%= hidden_field_tag 'stripeToken' %>
-<%= hidden_field_tag 'stripeEmail' %>
-<%= hidden_field_tag 'amount', @pitch.price_in_cents*(@n_selected.to_i) %>
-
 
 <div>
   <div class="row">
@@ -35,33 +29,22 @@
   <div class="row">
     <div class="col-md-6 col-md-offset-3">
       <p>
-        <h5  id="warning">Tenga en cuenta que mientras la reserva no esté confirmada y pagada otro usuario podría reservar uno o varios tramos de su preselección de tal forma que si este la tramita antes que usted la suya quedaría anulada. No se demore.</h5>
+        <h5  id="warning">Tenga en cuenta que mientras la reserva no esté confirmada y pagada otro usuario podría reservar uno o varios tramos de su preselección de tal forma que si este la tramita antes que usted, la suya quedaría anulada. No se demore.</h5>
       </p>
     </div>
   </div>
 </div>
 
-<script type="text/javascript">
-
-    var fecha = $('#fecha').val();
-    var date = new Date(fecha);
-    var options = { weekday: "long", year: "numeric", month: "long", day: "numeric" };
-    var str_fecha = date.toLocaleTimeString("es-ES", options);
-    str_fecha = str_fecha.slice(0, -8);
-    $('#hidden_hours').append("<p><b> "+ str_fecha +"</b><p>");
-    $('#due').append("<p>Coste:<b> "+ ($('#amount').val()/100) +" €</b><p>");
-
-    var values = $("input[name='horario[]']").map(function(){return $(this).val();}).get();
-    for (var i=0; i<values.length; i++){ $('#hidden_hours').append("<p><b>&emsp;"+ hourById(values[i]) +"</b><p>"); }
-</script>
 
 <%= form_tag charges_path, id: 'chargeForm' do %>
+<script src="https://checkout.stripe.com/checkout.js"></script>
 
-<% if flash[:error].present? %>
-<div id="error_explanation">
-  <p><%= flash[:error] %></p>
-</div>
-<% end %>
+<%= hidden_field_tag 'stripeToken' %>
+<%= hidden_field_tag 'stripeEmail' %>
+<%= hidden_field_tag 'selections' %>
+<%= hidden_field_tag 'fecha', @our_date %>
+<%= hidden_field_tag 'pistaId', @pitch.id %>
+<%= hidden_field_tag 'amount', @pitch.price_in_cents*(@n_selected.to_i) %>
 
 <div class="row">
   <button id="btn-buy" type="button" class="btn btn-primary center-block">
@@ -69,26 +52,31 @@
     Reservar</button>
 </div>
 
-
 <script>
-  var handler = StripeCheckout.configure({
-    key: '<%= Rails.configuration.stripe[:publishable_key] %>',
-    token: function (token, arg) {
+var handler = StripeCheckout.configure({
+  key: 'pk_test_FwaF79JSeIgI1CB7kjHbUFh2',
+  image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
+  locale: 'es',
+  token: function(token) {
       document.getElementById("stripeToken").value = token.id;
       document.getElementById("stripeEmail").value = token.email;
       document.getElementById("chargeForm").submit();
-    }
-  });
-  document.getElementById('btn-buy').addEventListener('click', function (e) {
-    handler.open({
-      name: 'Alquiler de pista',
-      locale: 'es',
-      currency: 'eur',
-      description: '<%= @pitch.name %>',
-      amount: document.getElementById("amount").value
-    });
-    e.preventDefault();
-  })
-</script>
+  }
+});
 
+document.getElementById('btn-buy').addEventListener('click', function(e) {
+  // Open Checkout with further options:
+  handler.open({
+    name: 'Stripe.com',
+    description: '2 widgets',
+    zipCode: true,
+    amount: 2000
+  });
+  e.preventDefault();
+});
+// Close Checkout on page navigation:
+window.addEventListener('popstate', function() {
+  handler.close();
+});
+</script>
 <% end %>

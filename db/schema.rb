@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170720151424) do
+ActiveRecord::Schema.define(version: 20170929083707) do
 
   create_table "contacts", force: :cascade do |t|
     t.string   "name"
@@ -52,6 +52,25 @@ ActiveRecord::Schema.define(version: 20170720151424) do
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
     t.index ["institution_id"], name: "index_pitches_on_institution_id"
+  end
+
+  create_table "reservations", force: :cascade do |t|
+    t.integer  "institution_id"
+    t.integer  "pitch_id"
+    t.integer  "user_id"
+    t.string   "charge_id"
+    t.decimal  "amount"
+    t.string   "selected_date"
+    t.string   "time_selections", default: ""
+    t.boolean  "refund",          default: false
+    t.string   "refund_reason",   default: ""
+    t.decimal  "refunded",        default: "0.0"
+    t.string   "fingerprint"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.index ["institution_id"], name: "index_reservations_on_institution_id"
+    t.index ["pitch_id"], name: "index_reservations_on_pitch_id"
+    t.index ["user_id"], name: "index_reservations_on_user_id"
   end
 
   create_table "schedules", force: :cascade do |t|

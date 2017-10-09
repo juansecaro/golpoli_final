@@ -343,3 +343,17 @@ function finalCheck(){
 
   return pass;
 }
+//////////////////////////////////_Confirm_////////////////////////////////////////
+$(document).on( 'turbolinks:load', function(){
+var fecha = $('#fecha').val();
+var date = new Date(fecha);
+var options = { weekday: "long", year: "numeric", month: "long", day: "numeric" };
+var str_fecha = date.toLocaleTimeString("es-ES", options);
+str_fecha = str_fecha.slice(0, -8);
+$('#hidden_hours').append("<p><b> "+ str_fecha +"</b><p>");
+$('#due').append("<p>Coste:<b> "+ ($('#amount').val()/100) +" €</b><p>");
+
+var values = $("input[name='horario[]']").map(function(){return parseInt($(this).val());}).get();
+for (var i=0; i<values.length; i++){ $('#hidden_hours').append("<p><b>&emsp;"+ hourById(values[i]) +"</b><p>"); }
+document.getElementById("selections").value = values;
+});
