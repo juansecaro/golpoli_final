@@ -35,8 +35,13 @@ class ChargesController < ApplicationController
         fingerprint: params[:stripeToken]
         )
 
-      block_selected_hours(params[:selections])
-      redirect_to reservation
+      
+      if reservation.persisted?
+        block_selected_hours(params[:selections])
+        redirect_to reservation
+      else
+        flash[:error] = "La reserva no se ha guardado bien"
+      end
 
   else
     flash[:error] = "Alguien ha cerrado una reserva con estos datos invalidando la tuya. Inténtalo de nuevo"
