@@ -54,8 +54,8 @@
 
 <script>
 var handler = StripeCheckout.configure({
-  key: 'pk_test_FwaF79JSeIgI1CB7kjHbUFh2',
-  image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
+  key: '<%= Rails.configuration.stripe[:publishable_key] %>',
+  image: 'http://adeter.org/cuadr_poligol_mini.png',
   locale: 'es',
   token: function(token) {
       document.getElementById("stripeToken").value = token.id;
@@ -67,10 +67,11 @@ var handler = StripeCheckout.configure({
 document.getElementById('btn-buy').addEventListener('click', function(e) {
   // Open Checkout with further options:
   handler.open({
-    name: 'Stripe.com',
-    description: '2 widgets',
-    zipCode: true,
-    amount: 2000
+    name: '<%= @institution.name %>',
+    description: '<%= @pitch.name %>',
+    locale: 'es',
+    currency: 'eur',
+    amount: document.getElementById("amount").value
   });
   e.preventDefault();
 });
