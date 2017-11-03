@@ -4,13 +4,13 @@ class CreateReservations < ActiveRecord::Migration[5.0]
       t.references :institution, foreign_key: true
       t.references :pitch, foreign_key: true
       t.references :user, foreign_key: true
-      t.string :charge_id
+      t.string :user_email
       t.decimal :amount
-      t.string :selected_date
-      t.string :time_selections, default: ""
-      t.boolean :refund, default: false
+      t.date :selected_date
+      t.string :selected_times, default: ""
+      t.boolean :refund, default: "0.0"
       t.string :refund_reason, default: ""
-      t.decimal :refunded, default: 0
+      t.decimal :refunded, default: false
       t.string :fingerprint
 
       t.timestamps

@@ -27,7 +27,7 @@ class ChargesController < ApplicationController
       reservation = Reservation.create(
         institution_id: @pitch.institution_id,
         pitch_id: @pitch.id,
-        #user_id: current_user.email,
+        user_id: current_user.email,
         amount: params[:amount],
         charge_id: charge.id,
         selected_date: params[:fecha],
@@ -35,12 +35,13 @@ class ChargesController < ApplicationController
         fingerprint: params[:stripeToken]
         )
 
-      
+
       if reservation.persisted?
         block_selected_hours(params[:selections])
         redirect_to reservation
       else
         flash[:error] = "La reserva no se ha guardado bien"
+        redirect_to root
       end
 
   else

@@ -1,8 +1,59 @@
 <p id="notice"><%= notice %></p>
 
-It works
+<p>
+  <strong>Institution:</strong>
+  <%= @reservation.institution %>
+</p>
 
-<%= @reservation.inspect %>
+<p>
+  <strong>Pitch:</strong>
+  <%= @reservation.pitch %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @reservation.user %>
+</p>
+
+<p>
+  <strong>User email:</strong>
+  <%= @reservation.user_email %>
+</p>
+
+<p>
+  <strong>Amount:</strong>
+  <%= @reservation.amount %>
+</p>
+
+<p>
+  <strong>Selected date:</strong>
+  <%= @reservation.selected_date %>
+</p>
+
+<p>
+  <strong>Selected times:</strong>
+  <%= @reservation.selected_times %>
+</p>
+
+<p>
+  <strong>Refund:</strong>
+  <%= @reservation.refund %>
+</p>
+
+<p>
+  <strong>Refund reason:</strong>
+  <%= @reservation.refund_reason %>
+</p>
+
+<p>
+  <strong>Refunded:</strong>
+  <%= @reservation.refunded %>
+</p>
+
+<p>
+  <strong>Fingerprint:</strong>
+  <%= @reservation.fingerprint %>
+</p>
 
 <%= link_to 'Edit', edit_reservation_path(@reservation) %> |
 <%= link_to 'Back', reservations_path %>

@@ -4,10 +4,10 @@ one:
   institution: one
   pitch: one
   user: one
-  charge_id: MyString
+  user_email: MyString
   amount: 9.99
-  selected_date: MyString
-  time_selections: MyString
+  selected_date: 2017-11-03
+  selected_times: MyString
   refund: false
   refund_reason: MyString
   refunded: 9.99
@@ -17,10 +17,10 @@ two:
   institution: two
   pitch: two
   user: two
-  charge_id: MyString
+  user_email: MyString
   amount: 9.99
-  selected_date: MyString
-  time_selections: MyString
+  selected_date: 2017-11-03
+  selected_times: MyString
   refund: false
   refund_reason: MyString
   refunded: 9.99

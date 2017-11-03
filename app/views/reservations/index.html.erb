@@ -5,6 +5,17 @@
 <table>
   <thead>
     <tr>
+      <th>Institution</th>
+      <th>Pitch</th>
+      <th>User</th>
+      <th>User email</th>
+      <th>Amount</th>
+      <th>Selected date</th>
+      <th>Selected times</th>
+      <th>Refund</th>
+      <th>Refund reason</th>
+      <th>Refunded</th>
+      <th>Fingerprint</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -12,6 +23,17 @@
   <tbody>
     <% @reservations.each do |reservation| %>
       <tr>
+        <td><%= reservation.institution %></td>
+        <td><%= reservation.pitch %></td>
+        <td><%= reservation.user %></td>
+        <td><%= reservation.user_email %></td>
+        <td><%= reservation.amount %></td>
+        <td><%= reservation.selected_date %></td>
+        <td><%= reservation.selected_times %></td>
+        <td><%= reservation.refund %></td>
+        <td><%= reservation.refund_reason %></td>
+        <td><%= reservation.refunded %></td>
+        <td><%= reservation.fingerprint %></td>
         <td><%= link_to 'Show', reservation %></td>
         <td><%= link_to 'Edit', edit_reservation_path(reservation) %></td>
         <td><%= link_to 'Destroy', reservation, method: :delete, data: { confirm: 'Are you sure?' } %></td>

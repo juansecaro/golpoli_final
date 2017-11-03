@@ -2,6 +2,17 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
+    <%= f.association :institution %>
+    <%= f.association :pitch %>
+    <%= f.association :user %>
+    <%= f.input :user_email %>
+    <%= f.input :amount %>
+    <%= f.input :selected_date %>
+    <%= f.input :selected_times %>
+    <%= f.input :refund %>
+    <%= f.input :refund_reason %>
+    <%= f.input :refunded %>
+    <%= f.input :fingerprint %>
   </div>
 
   <div class="form-actions">
