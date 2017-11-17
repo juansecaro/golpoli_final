@@ -5,6 +5,7 @@ class CreateReservations < ActiveRecord::Migration[5.0]
       t.references :pitch, foreign_key: true
       t.references :user, foreign_key: true
       t.string :user_email
+      t.string :charge_id, default: ""
       t.decimal :amount
       t.date :selected_date
       t.string :selected_times, default: ""

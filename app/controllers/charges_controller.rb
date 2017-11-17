@@ -9,6 +9,7 @@ class ChargesController < ApplicationController
     @pitch = Pitch.find(params[:pistaId])
     @schedule = Schedule.where("date_ref = ? and pitch_id = ?", params[:fecha], params[:pistaId]).first
     #@schedule = Schedule.where("date_ref = ? and pitch_id = ?", params[:fecha] , params[:pistaId])
+    howmany = params[:selections].split(",").count
 
     if valid_selection?(params[:selections])
 
@@ -19,7 +20,7 @@ class ChargesController < ApplicationController
 
       charge = Stripe::Charge.create(
         :customer    => customer.id,
-        :amount      => @pitch.price_in_cents,# por el número de selecc!!
+        :amount      => @pitch.price_in_cents * howmany,# por el número de selecc!!
         :description => 'Reserva en ', #+ @pitch.name +' '+  ,
         :currency    => 'eur'
       )
@@ -27,27 +28,27 @@ class ChargesController < ApplicationController
       reservation = Reservation.create(
         institution_id: @pitch.institution_id,
         pitch_id: @pitch.id,
-        user_id: current_user.email,
+        user_id: current_user.id,
+        user_email: params[:stripeEmail],
         amount: params[:amount],
         charge_id: charge.id,
         selected_date: params[:fecha],
-        time_selections: params[:selections],
+        selected_times: params[:selections],
         fingerprint: params[:stripeToken]
         )
-
 
       if reservation.persisted?
         block_selected_hours(params[:selections])
         redirect_to reservation
       else
         flash[:error] = "La reserva no se ha guardado bien"
-        redirect_to root
+        redirect_to root_path
       end
 
-  else
-    flash[:error] = "Alguien ha cerrado una reserva con estos datos invalidando la tuya. Inténtalo de nuevo"
-    redirect_to root
-  end
+    else
+      flash[:error] = "Alguien ha cerrado una reserva con estos datos invalidando la tuya. Inténtalo de nuevo"
+      redirect_to root_path
+    end
 
   rescue Stripe::CardError => e
     flash[:error] = e.message

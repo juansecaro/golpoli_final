@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(version: 20171103025356) do
     t.integer  "pitch_id"
     t.integer  "user_id"
     t.string   "user_email"
+    t.string   "charge_id",      default: ""
     t.decimal  "amount"
     t.date     "selected_date"
     t.string   "selected_times", default: ""
