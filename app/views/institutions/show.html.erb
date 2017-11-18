@@ -1,11 +1,11 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Pistas disponibles en <%= @institution.name %></h1>
+<p><h1 class="text-center" >Pistas disponibles en <%= @institution.name %></h1></p>
 
 <% @pitches.each do |pitch| %>
 <div class="row" id="pitch_component">
   <div class="col-md-4">
-    <%= link_to image_tag(pitch.image, class:"img-rounded img-responsive", alt: pitch.name), institution_pitch_path(pitch) %>
+    <%= link_to image_tag(pitch.image, class:"img-thumbnail img-responsive", alt: pitch.name), institution_pitch_path(pitch) %>
   </div>
   <div class="col-md-6">
     <p><h4><%= pitch.name %></h4></p>
