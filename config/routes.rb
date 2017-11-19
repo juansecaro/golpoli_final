@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
 
+  get 'home/weare'
+  get 'home/mission'
+  get 'home/contact'
+  get 'home/press'
+  get 'home/faqs'
+  get 'home/opinions'
+
   resources :reservations
   devise_for :users
 
