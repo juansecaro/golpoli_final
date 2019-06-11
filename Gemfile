@@ -32,7 +32,7 @@ gem 'rails_12factor', group: :production
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 #posgreSQL for production
 #gem 'pg', group: :production
-gem 'jquery-ui-rails', '~> 5.0', '>= 5.0.5'
+gem 'jquery-ui-rails', '~> 6.0', '>= 6.0.0'
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
 
 gem 'awesome_print', '~> 1.7', :require => 'ap'
