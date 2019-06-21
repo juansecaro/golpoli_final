@@ -33,7 +33,7 @@ gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 #posgreSQL for production
 #gem 'pg', group: :production
 gem 'jquery-ui-rails', '~> 5.0', '>= 5.0.5'
-gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
+gem 'bootstrap-sass', '~> 3.4', '>= 3.4.0'
 
 gem 'awesome_print', '~> 1.7', :require => 'ap'
 # for forms
@@ -41,7 +41,7 @@ gem 'simple_form', '~> 3.5'
 # Users handdle
 gem 'devise', '~> 4.3'
 # Use jquery as the JavaScript library
-gem 'jquery-rails'
+gem 'jquery-rails', '>= 4.3.4'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
