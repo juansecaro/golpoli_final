@@ -37,7 +37,7 @@ gem 'bootstrap-sass', '~> 3.3', '>= 3.3.7'
 
 gem 'awesome_print', '~> 1.7', :require => 'ap'
 # for forms
-gem 'simple_form', '~> 3.5'
+gem 'simple_form', '~> 5.0', '>= 5.0.0'
 # Users handdle
 gem 'devise', '~> 4.3'
 # Use jquery as the JavaScript library
