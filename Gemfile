@@ -21,7 +21,7 @@ gem 'coffee-rails', '~> 4.2'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 # For internationalization
-gem "rails-i18n"
+gem "rails-i18n", ">= 8.0.0"
 gem "font-awesome-rails"
 gem 'letter_opener', '~> 1.4', '>= 1.4.1', group: :development
 #Let's keep sensitive info safe
